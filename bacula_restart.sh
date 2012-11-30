@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
-if [ "$1" = "-shark" ]
-then
-	echo "It's freaking sharks with lazers attached to their heads!"
-fi
+while getopts ":a" opt; do
+  case $opt in
+    a)
+      echo "It is freaking sharks with lazers attached to their heads!" >&2
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
 
 /etc/init.d/bacula-director restart
 /etc/init.d/bacula-fd restart
